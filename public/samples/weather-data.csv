@@ -1,0 +1,85 @@
+City,Month,Temperature,Humidity,Precipitation,Wind Speed,Air Quality Index
+New York,January,2.5,68,85,18,45
+New York,February,4.2,65,78,20,42
+New York,March,9.8,62,95,22,48
+New York,April,15.5,58,88,19,38
+New York,May,21.2,60,75,16,35
+New York,June,26.5,65,82,15,40
+New York,July,29.8,70,90,14,52
+New York,August,28.5,72,95,15,55
+New York,September,24.2,68,88,16,45
+New York,October,17.5,65,92,18,40
+New York,November,11.2,70,105,20,48
+New York,December,5.8,72,95,22,50
+Los Angeles,January,15.8,55,45,12,65
+Los Angeles,February,16.5,52,38,13,62
+Los Angeles,March,18.2,50,42,14,68
+Los Angeles,April,20.5,48,28,15,58
+Los Angeles,May,22.8,50,15,14,52
+Los Angeles,June,25.5,52,8,12,55
+Los Angeles,July,28.2,55,5,11,70
+Los Angeles,August,28.8,58,8,12,75
+Los Angeles,September,27.5,56,12,13,72
+Los Angeles,October,24.2,54,25,14,65
+Los Angeles,November,19.8,56,38,15,62
+Los Angeles,December,16.2,58,48,16,68
+Chicago,January,-3.5,72,55,24,52
+Chicago,February,-1.8,68,48,26,48
+Chicago,March,5.2,65,72,25,45
+Chicago,April,11.8,60,85,22,40
+Chicago,May,18.5,62,78,20,38
+Chicago,June,24.2,65,88,18,42
+Chicago,July,27.5,70,92,16,55
+Chicago,August,26.8,72,95,17,58
+Chicago,September,22.5,68,82,19,48
+Chicago,October,15.2,65,78,21,45
+Chicago,November,7.8,70,68,23,50
+Chicago,December,0.5,75,62,25,55
+Miami,January,20.5,75,52,16,35
+Miami,February,21.8,73,45,17,32
+Miami,March,23.5,70,58,18,38
+Miami,April,25.8,72,65,16,40
+Miami,May,27.5,78,125,15,42
+Miami,June,29.2,82,185,14,45
+Miami,July,30.5,85,165,13,52
+Miami,August,30.8,86,178,14,55
+Miami,September,29.5,84,195,15,50
+Miami,October,27.2,80,145,16,45
+Miami,November,24.5,76,82,17,40
+Miami,December,21.8,74,58,18,38
+Seattle,January,6.5,78,125,15,42
+Seattle,February,8.2,75,95,16,38
+Seattle,March,10.5,72,85,17,35
+Seattle,April,13.2,68,68,18,32
+Seattle,May,16.8,65,55,16,30
+Seattle,June,19.5,62,42,14,28
+Seattle,July,22.8,58,25,12,32
+Seattle,August,22.5,60,28,13,35
+Seattle,September,19.2,65,45,14,38
+Seattle,October,14.5,70,95,15,40
+Seattle,November,10.2,75,135,16,45
+Seattle,December,7.5,78,155,17,48
+Denver,January,-1.2,58,15,18,45
+Denver,February,1.5,55,18,19,42
+Denver,March,6.8,52,32,20,38
+Denver,April,11.5,50,45,18,35
+Denver,May,16.8,52,58,16,32
+Denver,June,22.5,48,38,14,30
+Denver,July,26.2,45,45,12,38
+Denver,August,25.5,48,52,13,40
+Denver,September,20.8,50,42,15,38
+Denver,October,14.2,52,35,17,40
+Denver,November,6.5,55,28,18,45
+Denver,December,0.8,58,22,19,48
+Boston,January,1.8,65,92,20,48
+Boston,February,3.5,62,85,22,45
+Boston,March,8.2,60,98,21,42
+Boston,April,14.5,58,88,19,38
+Boston,May,20.2,60,82,17,35
+Boston,June,25.5,65,78,15,38
+Boston,July,28.2,68,85,14,45
+Boston,August,27.5,70,92,15,48
+Boston,September,23.2,68,88,16,42
+Boston,October,16.5,65,95,18,40
+Boston,November,10.8,68,105,20,45
+Boston,December,4.5,70,98,22,50

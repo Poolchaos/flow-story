@@ -1,0 +1,49 @@
+Region,Quarter,Revenue,Units Sold,Customer Rating,Product Category
+North America,Q1 2024,125000,450,4.5,Electronics
+North America,Q2 2024,138000,485,4.6,Electronics
+North America,Q3 2024,142000,510,4.7,Electronics
+North America,Q4 2024,156000,545,4.8,Electronics
+Europe,Q1 2024,98000,340,4.3,Electronics
+Europe,Q2 2024,112000,380,4.4,Electronics
+Europe,Q3 2024,125000,420,4.6,Electronics
+Europe,Q4 2024,135000,460,4.7,Electronics
+Asia Pacific,Q1 2024,165000,580,4.6,Electronics
+Asia Pacific,Q2 2024,182000,630,4.7,Electronics
+Asia Pacific,Q3 2024,198000,685,4.8,Electronics
+Asia Pacific,Q4 2024,215000,740,4.9,Electronics
+North America,Q1 2024,85000,320,4.2,Home & Garden
+North America,Q2 2024,92000,345,4.3,Home & Garden
+North America,Q3 2024,98000,370,4.4,Home & Garden
+North America,Q4 2024,105000,395,4.5,Home & Garden
+Europe,Q1 2024,72000,265,4.1,Home & Garden
+Europe,Q2 2024,78000,285,4.2,Home & Garden
+Europe,Q3 2024,85000,310,4.3,Home & Garden
+Europe,Q4 2024,92000,335,4.4,Home & Garden
+Asia Pacific,Q1 2024,115000,425,4.4,Home & Garden
+Asia Pacific,Q2 2024,125000,460,4.5,Home & Garden
+Asia Pacific,Q3 2024,135000,495,4.6,Home & Garden
+Asia Pacific,Q4 2024,145000,530,4.7,Home & Garden
+North America,Q1 2024,68000,285,4.0,Fashion
+North America,Q2 2024,75000,310,4.1,Fashion
+North America,Q3 2024,82000,335,4.2,Fashion
+North America,Q4 2024,90000,365,4.3,Fashion
+Europe,Q1 2024,95000,395,4.3,Fashion
+Europe,Q2 2024,105000,425,4.4,Fashion
+Europe,Q3 2024,115000,460,4.5,Fashion
+Europe,Q4 2024,125000,495,4.6,Fashion
+Asia Pacific,Q1 2024,88000,365,4.2,Fashion
+Asia Pacific,Q2 2024,96000,395,4.3,Fashion
+Asia Pacific,Q3 2024,105000,430,4.4,Fashion
+Asia Pacific,Q4 2024,115000,465,4.5,Fashion
+North America,Q1 2024,45000,180,3.9,Sports
+North America,Q2 2024,52000,205,4.0,Sports
+North America,Q3 2024,58000,225,4.1,Sports
+North America,Q4 2024,65000,250,4.2,Sports
+Europe,Q1 2024,38000,155,3.8,Sports
+Europe,Q2 2024,42000,170,3.9,Sports
+Europe,Q3 2024,48000,190,4.0,Sports
+Europe,Q4 2024,54000,210,4.1,Sports
+Asia Pacific,Q1 2024,62000,245,4.1,Sports
+Asia Pacific,Q2 2024,68000,265,4.2,Sports
+Asia Pacific,Q3 2024,75000,290,4.3,Sports
+Asia Pacific,Q4 2024,82000,315,4.4,Sports

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDataStore } from '../store/dataStore';
 import FileUpload from '../components/FileUpload';
@@ -10,23 +10,17 @@ type Step = 'upload' | 'configure' | 'preview';
 export default function Create() {
   const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState<Step>('upload');
-  const { parsedData, columnMapping } = useDataStore();
+  const { parsedData, columnMapping, clearData } = useDataStore();
 
   const hasData = parsedData !== null && parsedData.rows.length > 0;
   const hasMapping = Boolean(columnMapping.x && columnMapping.y && columnMapping.z);
 
-  // Auto-advance logic
-  useEffect(() => {
-    if (currentStep === 'upload' && hasData) {
-      setCurrentStep('configure');
+  const handleReset = () => {
+    if (confirm('Are you sure you want to reset all data? This cannot be undone.')) {
+      clearData();
+      setCurrentStep('upload');
     }
-  }, [hasData, currentStep]);
-
-  useEffect(() => {
-    if (currentStep === 'configure' && hasMapping) {
-      setCurrentStep('preview');
-    }
-  }, [hasMapping, currentStep]);
+  };
 
   const steps = [
     { id: 'upload' as Step, label: 'Upload', icon: <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" /></svg> },
@@ -93,8 +87,16 @@ export default function Create() {
         {/* Step Content */}
         <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12">
           {currentStep === 'upload' && <FileUpload />}
-          {currentStep === 'configure' && <ColumnMapper />}
-          {currentStep === 'preview' && <DataValidation />}
+          {currentStep === 'configure' && (
+            <ColumnMapper onContinue={() => setCurrentStep('preview')} />
+          )}
+          {currentStep === 'preview' && (
+            <DataValidation
+              onEditMapping={() => setCurrentStep('configure')}
+              onChangeData={() => setCurrentStep('upload')}
+              onReset={handleReset}
+            />
+          )}
         </div>
 
         {/* Navigation Buttons */}

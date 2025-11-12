@@ -103,6 +103,48 @@ export default function FileUpload() {
     fileInputRef.current?.click();
   };
 
+  const handleSampleSelect = async (sampleName: string) => {
+    setError(null);
+    setIsLoading(true);
+    setFileName(`Sample: ${sampleName}`);
+
+    try {
+      const response = await fetch(`/samples/${sampleName}.csv`);
+      if (!response.ok) {
+        throw new Error('Failed to load sample dataset');
+      }
+      const csvText = await response.text();
+      setCsvData(csvText);
+      parseCSV(csvText);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to load sample');
+      setIsLoading(false);
+    }
+  };
+
+  const samples = [
+    {
+      id: 'sales-performance',
+      name: 'Sales Performance',
+      description: '48 rows - Regional sales data across quarters with revenue, units, and ratings',
+      icon: (
+        <svg className="w-8 h-8 text-cyan-600" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+        </svg>
+      ),
+    },
+    {
+      id: 'weather-data',
+      name: 'Weather Data',
+      description: '84 rows - Monthly weather patterns for 7 US cities with temperature and humidity',
+      icon: (
+        <svg className="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
+        </svg>
+      ),
+    },
+  ];
+
   return (
     <div className="space-y-8">
       <div className="text-center">
@@ -156,6 +198,43 @@ export default function FileUpload() {
       {error && (
         <div className="bg-red-50 border-2 border-red-200 rounded-xl p-4 text-red-700 text-center">
           {error}
+        </div>
+      )}
+
+      {/* Sample Datasets */}
+      {!parsedData && (
+        <div className="space-y-4">
+          <div className="flex items-center gap-3 justify-center">
+            <div className="h-px bg-gray-300 flex-1"></div>
+            <span className="text-gray-500 font-medium">Or try a sample dataset</span>
+            <div className="h-px bg-gray-300 flex-1"></div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {samples.map((sample) => (
+              <button
+                key={sample.id}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleSampleSelect(sample.id);
+                }}
+                className="p-6 rounded-xl border-2 border-gray-200 hover:border-cyan-500 hover:bg-cyan-50 transition-all text-left group"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="flex-shrink-0">{sample.icon}</div>
+                  <div className="flex-1">
+                    <h4 className="text-lg font-bold text-gray-900 group-hover:text-cyan-700 mb-1">
+                      {sample.name}
+                    </h4>
+                    <p className="text-sm text-gray-600">{sample.description}</p>
+                  </div>
+                  <svg className="w-6 h-6 text-gray-400 group-hover:text-cyan-600" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
+                </div>
+              </button>
+            ))}
+          </div>
         </div>
       )}
 
