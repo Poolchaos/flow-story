@@ -14,13 +14,23 @@ interface BarProps {
 function Bar({ position, height, color, label, data }: BarProps) {
   const [hovered, setHovered] = useState(false);
 
+  const handlePointerOver = (e: THREE.Event) => {
+    e.stopPropagation();
+    setHovered(true);
+  };
+
+  const handlePointerOut = (e: THREE.Event) => {
+    e.stopPropagation();
+    setHovered(false);
+  };
+
   return (
     <group position={position}>
       {/* The bar */}
       <mesh
         position={[0, height / 2, 0]}
-        onPointerOver={() => setHovered(true)}
-        onPointerOut={() => setHovered(false)}
+        onPointerOver={handlePointerOver}
+        onPointerOut={handlePointerOut}
         castShadow
       >
         <boxGeometry args={[0.8, height, 0.8]} />
