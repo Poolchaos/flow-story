@@ -63,14 +63,14 @@ describe('dataStore', () => {
       };
 
       useDataStore.getState().setParsedData(testData);
-      
+
       const { parsedData } = useDataStore.getState();
       expect(parsedData).toEqual(testData);
     });
 
     it('should handle null parsedData', () => {
       useDataStore.getState().setParsedData(null);
-      
+
       const { parsedData } = useDataStore.getState();
       expect(parsedData).toBeNull();
     });
@@ -89,7 +89,7 @@ describe('dataStore', () => {
 
       useDataStore.getState().setParsedData(firstData);
       useDataStore.getState().setParsedData(secondData);
-      
+
       const { parsedData } = useDataStore.getState();
       expect(parsedData).toEqual(secondData);
     });
@@ -159,14 +159,14 @@ describe('dataStore', () => {
       ];
 
       useDataStore.getState().setValidationResults(results);
-      
+
       const { validationResults } = useDataStore.getState();
       expect(validationResults).toEqual(results);
     });
 
     it('should handle empty validationResults', () => {
       useDataStore.getState().setValidationResults([]);
-      
+
       const { validationResults } = useDataStore.getState();
       expect(validationResults).toEqual([]);
     });
@@ -181,7 +181,7 @@ describe('dataStore', () => {
 
       useDataStore.getState().setValidationResults(firstResults);
       useDataStore.getState().setValidationResults(secondResults);
-      
+
       const { validationResults } = useDataStore.getState();
       expect(validationResults).toEqual(secondResults);
     });
