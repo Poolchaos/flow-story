@@ -3,18 +3,58 @@ import { Link } from 'react-router-dom';
 import { useDataStore } from '../store/dataStore';
 import Scene3D, { type Scene3DRef } from '../components/Scene3D';
 import WaypointPanel from '../components/WaypointPanel';
+import TimelineControls from '../components/TimelineControls';
 import type { Template } from '../types';
 
 export default function Visualize() {
   const [selectedTemplate, setSelectedTemplate] = useState<Template>('bars');
+  const [isAnimating, setIsAnimating] = useState(false);
+  const [currentWaypointIndex, setCurrentWaypointIndex] = useState(0);
+  const [animationDuration, setAnimationDuration] = useState(3);
   const sceneRef = useRef<Scene3DRef>(null);
-  const { parsedData, columnMapping } = useDataStore();
+  const { parsedData, columnMapping, waypoints } = useDataStore();
 
   const hasData = parsedData && columnMapping.x && columnMapping.y && columnMapping.z;
 
   const handleCaptureCamera = () => {
     if (!sceneRef.current) return null;
     return sceneRef.current.getCameraState();
+  };
+
+  const handlePlay = () => {
+    if (waypoints.length >= 2) {
+      setIsAnimating(true);
+      setCurrentWaypointIndex(0);
+    }
+  };
+
+  const handlePause = () => {
+    setIsAnimating(false);
+  };
+
+  const handleStop = () => {
+    setIsAnimating(false);
+    setCurrentWaypointIndex(0);
+  };
+
+  const handleSkipPrevious = () => {
+    if (currentWaypointIndex > 0) {
+      setCurrentWaypointIndex(currentWaypointIndex - 1);
+    }
+  };
+
+  const handleSkipNext = () => {
+    if (currentWaypointIndex < waypoints.length - 1) {
+      setCurrentWaypointIndex(currentWaypointIndex + 1);
+    }
+  };
+
+  const handleAnimationComplete = () => {
+    setIsAnimating(false);
+  };
+
+  const handleWaypointIndexChange = (index: number) => {
+    setCurrentWaypointIndex(index);
   };
 
   if (!hasData) {
@@ -119,10 +159,34 @@ export default function Visualize() {
 
       {/* 3D Scene */}
       <div className="flex-1 relative">
-        <Scene3D ref={sceneRef} template={selectedTemplate} />
+        <Scene3D
+          ref={sceneRef}
+          template={selectedTemplate}
+          isAnimating={isAnimating}
+          currentWaypointIndex={currentWaypointIndex}
+          animationDuration={animationDuration}
+          onAnimationComplete={handleAnimationComplete}
+          onWaypointIndexChange={handleWaypointIndexChange}
+        />
 
         {/* Waypoint Panel */}
         <WaypointPanel onCapture={handleCaptureCamera} />
+
+        {/* Timeline Controls */}
+        {waypoints.length > 0 && (
+          <TimelineControls
+            waypointCount={waypoints.length}
+            isPlaying={isAnimating}
+            currentIndex={currentWaypointIndex}
+            duration={animationDuration}
+            onPlay={handlePlay}
+            onPause={handlePause}
+            onStop={handleStop}
+            onSkipPrevious={handleSkipPrevious}
+            onSkipNext={handleSkipNext}
+            onDurationChange={setAnimationDuration}
+          />
+        )}
 
         {/* Instructions overlay */}
         <div className="absolute bottom-6 left-6 bg-gray-800/90 backdrop-blur-sm border border-gray-700 rounded-lg px-4 py-3 text-sm text-gray-300">

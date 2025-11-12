@@ -5,19 +5,36 @@ import { useDataStore } from '../store/dataStore';
 import BarChart3D from './BarChart3D';
 import ParticleCloud3D from './ParticleCloud3D';
 import BubbleChart3D from './BubbleChart3D';
+import CameraAnimator from './CameraAnimator';
 import type { OrbitControls as OrbitControlsType } from 'three-stdlib';
 
 interface Scene3DProps {
   template?: 'bars' | 'particles' | 'spheres';
+  isAnimating?: boolean;
+  currentWaypointIndex?: number;
+  animationDuration?: number;
+  onAnimationComplete?: () => void;
+  onWaypointIndexChange?: (index: number) => void;
 }
 
 export interface Scene3DRef {
   getCameraState: () => { position: { x: number; y: number; z: number }; target: { x: number; y: number; z: number } } | null;
 }
 
-const Scene3D = forwardRef<Scene3DRef, Scene3DProps>(({ template = 'bars' }, ref) => {
-  const { parsedData, columnMapping } = useDataStore();
-  const controlsRef = useRef<OrbitControlsType>(null);
+const Scene3D = forwardRef<Scene3DRef, Scene3DProps>(
+  (
+    {
+      template = 'bars',
+      isAnimating = false,
+      currentWaypointIndex = 0,
+      animationDuration = 3,
+      onAnimationComplete = () => {},
+      onWaypointIndexChange = () => {},
+    },
+    ref
+  ) => {
+    const { parsedData, columnMapping, waypoints } = useDataStore();
+    const controlsRef = useRef<OrbitControlsType>(null);
 
   useImperativeHandle(ref, () => ({
     getCameraState: () => {
@@ -67,6 +84,18 @@ const Scene3D = forwardRef<Scene3DRef, Scene3DProps>(({ template = 'bars' }, ref
           dampingFactor={0.05}
           minDistance={5}
           maxDistance={50}
+          enabled={!isAnimating}
+        />
+
+        {/* Camera Animator */}
+        <CameraAnimator
+          waypoints={waypoints}
+          isPlaying={isAnimating}
+          currentIndex={currentWaypointIndex}
+          duration={animationDuration}
+          onComplete={onAnimationComplete}
+          onIndexChange={onWaypointIndexChange}
+          controlsRef={controlsRef}
         />
 
         {/* Grid helper */}
