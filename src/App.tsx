@@ -6,7 +6,7 @@ import Visualize from './pages/Visualize';
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/flow-story">
       <div className="min-h-screen">
         {/* Navigation */}
         <nav className="bg-white border-b border-gray-200 sticky top-0 z-50">
