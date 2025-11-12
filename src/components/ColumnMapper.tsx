@@ -27,7 +27,7 @@ export default function ColumnMapper({ onContinue }: ColumnMapperProps) {
 
   // Filter columns by type for appropriate mappings
   const numericColumns = parsedData.columns.filter(col => parsedData.types[col] === 'number');
-  const categoricalColumns = parsedData.columns.filter(col => 
+  const categoricalColumns = parsedData.columns.filter(col =>
     parsedData.types[col] === 'string' || parsedData.types[col] === 'boolean'
   );
 
@@ -39,7 +39,7 @@ export default function ColumnMapper({ onContinue }: ColumnMapperProps) {
     columnFilter?: string[]
   ) => {
     const availableColumns = columnFilter || parsedData.columns;
-    
+
     return (
       <div>
         <label className="block text-sm md:text-base font-semibold text-gray-700 mb-2 flex items-center gap-2">
@@ -49,11 +49,11 @@ export default function ColumnMapper({ onContinue }: ColumnMapperProps) {
           </span>
           {tooltip && (
             <div className="relative group">
-              <svg 
-                className="w-5 h-5 text-gray-400 hover:text-cyan-600 cursor-help transition-colors" 
-                fill="none" 
-                stroke="currentColor" 
-                strokeWidth="2" 
+              <svg
+                className="w-5 h-5 text-gray-400 hover:text-cyan-600 cursor-help transition-colors"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
                 viewBox="0 0 24 24"
               >
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -119,23 +119,23 @@ export default function ColumnMapper({ onContinue }: ColumnMapperProps) {
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {renderSelect(
-              'Color', 
-              'color', 
-              false, 
+              'Color',
+              'color',
+              false,
               'Map a categorical column (text/boolean) to control color gradients. Text values assign distinct colors to different categories for easy comparison.',
               categoricalColumns
             )}
             {renderSelect(
-              'Size', 
-              'size', 
-              false, 
+              'Size',
+              'size',
+              false,
               'Map a numeric column to control element sizes. Higher values create larger bars, particles, or spheres. Adds visual emphasis to important data points.',
               numericColumns
             )}
             {renderSelect(
-              'Label', 
-              'label', 
-              false, 
+              'Label',
+              'label',
+              false,
               'Choose which column to display in hover tooltips as the primary identifier. Helpful for showing names, IDs, or descriptions when exploring data.'
             )}
           </div>
