@@ -1,15 +1,21 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useDataStore } from '../store/dataStore';
-import Scene3D from '../components/Scene3D';
-
-type Template = 'bars' | 'particles' | 'spheres';
+import Scene3D, { type Scene3DRef } from '../components/Scene3D';
+import WaypointPanel from '../components/WaypointPanel';
+import type { Template } from '../types';
 
 export default function Visualize() {
   const [selectedTemplate, setSelectedTemplate] = useState<Template>('bars');
+  const sceneRef = useRef<Scene3DRef>(null);
   const { parsedData, columnMapping } = useDataStore();
 
   const hasData = parsedData && columnMapping.x && columnMapping.y && columnMapping.z;
+
+  const handleCaptureCamera = () => {
+    if (!sceneRef.current) return null;
+    return sceneRef.current.getCameraState();
+  };
 
   if (!hasData) {
     return (
@@ -113,7 +119,10 @@ export default function Visualize() {
 
       {/* 3D Scene */}
       <div className="flex-1 relative">
-        <Scene3D template={selectedTemplate} />
+        <Scene3D ref={sceneRef} template={selectedTemplate} />
+
+        {/* Waypoint Panel */}
+        <WaypointPanel onCapture={handleCaptureCamera} />
 
         {/* Instructions overlay */}
         <div className="absolute bottom-6 left-6 bg-gray-800/90 backdrop-blur-sm border border-gray-700 rounded-lg px-4 py-3 text-sm text-gray-300">
@@ -127,7 +136,7 @@ export default function Visualize() {
         </div>
 
         {/* Data info */}
-        <div className="absolute top-6 right-6 bg-gray-800/90 backdrop-blur-sm border border-gray-700 rounded-lg px-4 py-3 text-sm text-gray-300">
+        <div className="absolute top-4 left-4 bg-gray-800/90 backdrop-blur-sm border border-gray-700 rounded-lg px-4 py-3 text-sm text-gray-300">
           <div className="font-semibold text-white mb-2">Data Mapping:</div>
           <div className="space-y-1">
             <div>X-axis: {columnMapping.x}</div>

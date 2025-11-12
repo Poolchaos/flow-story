@@ -24,3 +24,13 @@ export interface ValidationResult {
     avg?: number;
   };
 }
+
+export interface Waypoint {
+  id: string;
+  position: { x: number; y: number; z: number };
+  target: { x: number; y: number; z: number };
+  annotation: string;
+  timestamp: number;
+}
+
+export type Template = 'bars' | 'particles' | 'spheres';

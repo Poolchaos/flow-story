@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { useDataStore } from './dataStore';
-import type { ParsedData, ColumnMapping, ValidationResult } from '../types';
+import type { ParsedData, ColumnMapping, ValidationResult, Waypoint } from '../types';
 
 describe('dataStore', () => {
   beforeEach(() => {
@@ -27,6 +27,11 @@ describe('dataStore', () => {
     it('should have empty validationResults', () => {
       const { validationResults } = useDataStore.getState();
       expect(validationResults).toEqual([]);
+    });
+
+    it('should have empty waypoints array', () => {
+      const { waypoints } = useDataStore.getState();
+      expect(waypoints).toEqual([]);
     });
   });
 
@@ -248,6 +253,180 @@ describe('dataStore', () => {
 
       const { columnMapping } = useDataStore.getState();
       expect(columnMapping).toEqual(initialMapping);
+    });
+  });
+
+  describe('waypoint actions', () => {
+    it('should add waypoint', () => {
+      const waypoint: Waypoint = {
+        id: 'waypoint-1',
+        position: { x: 10, y: 10, z: 10 },
+        target: { x: 0, y: 0, z: 0 },
+        annotation: 'First waypoint',
+        timestamp: Date.now(),
+      };
+
+      useDataStore.getState().addWaypoint(waypoint);
+
+      const { waypoints } = useDataStore.getState();
+      expect(waypoints).toHaveLength(1);
+      expect(waypoints[0]).toEqual(waypoint);
+    });
+
+    it('should add multiple waypoints', () => {
+      const waypoint1: Waypoint = {
+        id: 'waypoint-1',
+        position: { x: 10, y: 10, z: 10 },
+        target: { x: 0, y: 0, z: 0 },
+        annotation: 'First',
+        timestamp: Date.now(),
+      };
+      const waypoint2: Waypoint = {
+        id: 'waypoint-2',
+        position: { x: 5, y: 5, z: 5 },
+        target: { x: 1, y: 1, z: 1 },
+        annotation: 'Second',
+        timestamp: Date.now(),
+      };
+
+      useDataStore.getState().addWaypoint(waypoint1);
+      useDataStore.getState().addWaypoint(waypoint2);
+
+      const { waypoints } = useDataStore.getState();
+      expect(waypoints).toHaveLength(2);
+      expect(waypoints[0]).toEqual(waypoint1);
+      expect(waypoints[1]).toEqual(waypoint2);
+    });
+
+    it('should update waypoint annotation', () => {
+      const waypoint: Waypoint = {
+        id: 'waypoint-1',
+        position: { x: 10, y: 10, z: 10 },
+        target: { x: 0, y: 0, z: 0 },
+        annotation: 'Original',
+        timestamp: Date.now(),
+      };
+
+      useDataStore.getState().addWaypoint(waypoint);
+      useDataStore.getState().updateWaypoint('waypoint-1', { annotation: 'Updated' });
+
+      const { waypoints } = useDataStore.getState();
+      expect(waypoints[0].annotation).toBe('Updated');
+    });
+
+    it('should update waypoint position', () => {
+      const waypoint: Waypoint = {
+        id: 'waypoint-1',
+        position: { x: 10, y: 10, z: 10 },
+        target: { x: 0, y: 0, z: 0 },
+        annotation: 'Test',
+        timestamp: Date.now(),
+      };
+
+      useDataStore.getState().addWaypoint(waypoint);
+      useDataStore.getState().updateWaypoint('waypoint-1', {
+        position: { x: 5, y: 5, z: 5 }
+      });
+
+      const { waypoints } = useDataStore.getState();
+      expect(waypoints[0].position).toEqual({ x: 5, y: 5, z: 5 });
+    });
+
+    it('should not update non-existent waypoint', () => {
+      const waypoint: Waypoint = {
+        id: 'waypoint-1',
+        position: { x: 10, y: 10, z: 10 },
+        target: { x: 0, y: 0, z: 0 },
+        annotation: 'Test',
+        timestamp: Date.now(),
+      };
+
+      useDataStore.getState().addWaypoint(waypoint);
+      useDataStore.getState().updateWaypoint('non-existent', { annotation: 'Updated' });
+
+      const { waypoints } = useDataStore.getState();
+      expect(waypoints[0].annotation).toBe('Test');
+    });
+
+    it('should delete waypoint by id', () => {
+      const waypoint1: Waypoint = {
+        id: 'waypoint-1',
+        position: { x: 10, y: 10, z: 10 },
+        target: { x: 0, y: 0, z: 0 },
+        annotation: 'First',
+        timestamp: Date.now(),
+      };
+      const waypoint2: Waypoint = {
+        id: 'waypoint-2',
+        position: { x: 5, y: 5, z: 5 },
+        target: { x: 1, y: 1, z: 1 },
+        annotation: 'Second',
+        timestamp: Date.now(),
+      };
+
+      useDataStore.getState().addWaypoint(waypoint1);
+      useDataStore.getState().addWaypoint(waypoint2);
+      useDataStore.getState().deleteWaypoint('waypoint-1');
+
+      const { waypoints } = useDataStore.getState();
+      expect(waypoints).toHaveLength(1);
+      expect(waypoints[0].id).toBe('waypoint-2');
+    });
+
+    it('should handle deleting non-existent waypoint', () => {
+      const waypoint: Waypoint = {
+        id: 'waypoint-1',
+        position: { x: 10, y: 10, z: 10 },
+        target: { x: 0, y: 0, z: 0 },
+        annotation: 'Test',
+        timestamp: Date.now(),
+      };
+
+      useDataStore.getState().addWaypoint(waypoint);
+      useDataStore.getState().deleteWaypoint('non-existent');
+
+      const { waypoints } = useDataStore.getState();
+      expect(waypoints).toHaveLength(1);
+    });
+
+    it('should clear all waypoints', () => {
+      const waypoint1: Waypoint = {
+        id: 'waypoint-1',
+        position: { x: 10, y: 10, z: 10 },
+        target: { x: 0, y: 0, z: 0 },
+        annotation: 'First',
+        timestamp: Date.now(),
+      };
+      const waypoint2: Waypoint = {
+        id: 'waypoint-2',
+        position: { x: 5, y: 5, z: 5 },
+        target: { x: 1, y: 1, z: 1 },
+        annotation: 'Second',
+        timestamp: Date.now(),
+      };
+
+      useDataStore.getState().addWaypoint(waypoint1);
+      useDataStore.getState().addWaypoint(waypoint2);
+      useDataStore.getState().clearWaypoints();
+
+      const { waypoints } = useDataStore.getState();
+      expect(waypoints).toEqual([]);
+    });
+
+    it('should clear waypoints when clearData is called', () => {
+      const waypoint: Waypoint = {
+        id: 'waypoint-1',
+        position: { x: 10, y: 10, z: 10 },
+        target: { x: 0, y: 0, z: 0 },
+        annotation: 'Test',
+        timestamp: Date.now(),
+      };
+
+      useDataStore.getState().addWaypoint(waypoint);
+      useDataStore.getState().clearData();
+
+      const { waypoints } = useDataStore.getState();
+      expect(waypoints).toEqual([]);
     });
   });
 });
