@@ -14,12 +14,12 @@ interface BarProps {
 function Bar({ position, height, color, label, data }: BarProps) {
   const [hovered, setHovered] = useState(false);
 
-  const handlePointerOver = (e: THREE.Event) => {
+  const handlePointerOver = (e: any) => {
     e.stopPropagation();
     setHovered(true);
   };
 
-  const handlePointerOut = (e: THREE.Event) => {
+  const handlePointerOut = (e: any) => {
     e.stopPropagation();
     setHovered(false);
   };
