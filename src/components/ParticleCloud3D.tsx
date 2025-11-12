@@ -60,7 +60,7 @@ export default function ParticleCloud3D() {
     const sizeMin = sizeValues.length > 0 ? Math.min(...sizeValues) : 0;
     const sizeMax = sizeValues.length > 0 ? Math.max(...sizeValues) : 1;
 
-    limitedRows.forEach((row, i) => {
+    limitedRows.forEach((_row, i) => {
       // Position
       const x = scaleValue(xValues[i], xMin, xMax, -10, 10);
       const y = scaleValue(yValues[i], yMin, yMax, -10, 10);

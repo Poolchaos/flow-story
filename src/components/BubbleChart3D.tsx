@@ -56,7 +56,7 @@ export default function BubbleChart3D() {
     const sizeMax = sizeValues.length > 0 ? Math.max(...sizeValues) : 1;
 
     // Create bubble data array
-    const bubbles = limitedRows.map((row, i) => {
+    const bubbles = limitedRows.map((_row, i) => {
       // Position
       const x = scaleValue(xValues[i], xMin, xMax, -10, 10);
       const y = scaleValue(yValues[i], yMin, yMax, -10, 10);
