@@ -109,7 +109,8 @@ export default function FileUpload() {
     setFileName(`Sample: ${sampleName}`);
 
     try {
-      const response = await fetch(`/samples/${sampleName}.csv`);
+      const basePath = import.meta.env.BASE_URL || '/';
+      const response = await fetch(`${basePath}samples/${sampleName}.csv`);
       if (!response.ok) {
         throw new Error('Failed to load sample dataset');
       }
