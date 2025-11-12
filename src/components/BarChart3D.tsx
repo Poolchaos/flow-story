@@ -24,8 +24,8 @@ function Bar({ position, height, color, label, data }: BarProps) {
         castShadow
       >
         <boxGeometry args={[0.8, height, 0.8]} />
-        <meshStandardMaterial 
-          color={hovered ? '#22d3ee' : color} 
+        <meshStandardMaterial
+          color={hovered ? '#22d3ee' : color}
           metalness={0.3}
           roughness={0.4}
         />

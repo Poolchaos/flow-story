@@ -23,27 +23,27 @@ export default function Scene3D({ template = 'bars' }: Scene3DProps) {
       <Canvas>
         {/* Camera */}
         <PerspectiveCamera makeDefault position={[10, 10, 10]} fov={60} />
-        
+
         {/* Lighting */}
         <ambientLight intensity={0.5} />
         <directionalLight position={[10, 10, 5]} intensity={1} castShadow />
         <directionalLight position={[-10, -10, -5]} intensity={0.3} />
-        
+
         {/* Controls */}
-        <OrbitControls 
+        <OrbitControls
           enableDamping
           dampingFactor={0.05}
           minDistance={5}
           maxDistance={50}
         />
-        
+
         {/* Grid helper */}
-        <Grid 
-          args={[20, 20]} 
-          cellSize={1} 
-          cellThickness={0.5} 
-          cellColor="#6b7280" 
-          sectionSize={5} 
+        <Grid
+          args={[20, 20]}
+          cellSize={1}
+          cellThickness={0.5}
+          cellColor="#6b7280"
+          sectionSize={5}
           sectionThickness={1}
           sectionColor="#9ca3af"
           fadeDistance={30}
@@ -51,7 +51,7 @@ export default function Scene3D({ template = 'bars' }: Scene3DProps) {
           followCamera={false}
           infiniteGrid={true}
         />
-        
+
         {/* Data visualization */}
         {template === 'bars' && <BarChart3D />}
         {/* Future templates: particles, spheres */}

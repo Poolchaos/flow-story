@@ -37,9 +37,9 @@ export default function Visualize() {
   }
 
   const templates = [
-    { 
-      id: 'bars' as Template, 
-      name: 'Bar Chart', 
+    {
+      id: 'bars' as Template,
+      name: 'Bar Chart',
       description: 'Vertical bars in 3D space',
       icon: (
         <svg className="w-8 h-8" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
@@ -47,9 +47,9 @@ export default function Visualize() {
         </svg>
       )
     },
-    { 
-      id: 'particles' as Template, 
-      name: 'Particles', 
+    {
+      id: 'particles' as Template,
+      name: 'Particles',
       description: 'Scatter plot cloud',
       icon: (
         <svg className="w-8 h-8" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
@@ -57,9 +57,9 @@ export default function Visualize() {
         </svg>
       )
     },
-    { 
-      id: 'spheres' as Template, 
-      name: 'Bubbles', 
+    {
+      id: 'spheres' as Template,
+      name: 'Bubbles',
       description: 'Sized spheres',
       icon: (
         <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
@@ -114,7 +114,7 @@ export default function Visualize() {
       {/* 3D Scene */}
       <div className="flex-1 relative">
         <Scene3D template={selectedTemplate} />
-        
+
         {/* Instructions overlay */}
         <div className="absolute bottom-6 left-6 bg-gray-800/90 backdrop-blur-sm border border-gray-700 rounded-lg px-4 py-3 text-sm text-gray-300">
           <div className="font-semibold text-white mb-2">Controls:</div>
