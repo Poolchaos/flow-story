@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useDataStore } from '../store/dataStore';
 import FileUpload from '../components/FileUpload';
 import ColumnMapper from '../components/ColumnMapper';
@@ -7,6 +8,7 @@ import DataValidation from '../components/DataValidation';
 type Step = 'upload' | 'configure' | 'preview';
 
 export default function Create() {
+  const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState<Step>('upload');
   const { parsedData, columnMapping } = useDataStore();
 
@@ -108,20 +110,31 @@ export default function Create() {
             ← Back
           </button>
 
-          <button
-            onClick={() => {
-              if (currentStep === 'upload' && hasData) setCurrentStep('configure');
-              if (currentStep === 'configure' && hasMapping) setCurrentStep('preview');
-            }}
-            disabled={
-              (currentStep === 'upload' && !hasData) ||
-              (currentStep === 'configure' && !hasMapping) ||
-              currentStep === 'preview'
-            }
-            className="px-8 py-3 rounded-lg font-semibold text-lg bg-cyan-600 text-white hover:bg-cyan-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-          >
-            Next →
-          </button>
+          {currentStep === 'preview' && hasMapping ? (
+            <button
+              onClick={() => navigate('/visualize')}
+              className="px-8 py-3 rounded-lg font-semibold text-lg bg-cyan-600 text-white hover:bg-cyan-700 transition-colors shadow-lg flex items-center gap-2"
+            >
+              <span>View in 3D</span>
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5" />
+              </svg>
+            </button>
+          ) : (
+            <button
+              onClick={() => {
+                if (currentStep === 'upload' && hasData) setCurrentStep('configure');
+                if (currentStep === 'configure' && hasMapping) setCurrentStep('preview');
+              }}
+              disabled={
+                (currentStep === 'upload' && !hasData) ||
+                (currentStep === 'configure' && !hasMapping)
+              }
+              className="px-8 py-3 rounded-lg font-semibold text-lg bg-cyan-600 text-white hover:bg-cyan-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            >
+              Next →
+            </button>
+          )}
         </div>
       </div>
     </div>

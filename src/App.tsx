@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import Home from './pages/Home';
 import Create from './pages/Create';
 import Explore from './pages/Explore';
+import Visualize from './pages/Visualize';
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/create" element={<Create />} />
           <Route path="/explore" element={<Explore />} />
+          <Route path="/visualize" element={<Visualize />} />
         </Routes>
       </div>
     </BrowserRouter>

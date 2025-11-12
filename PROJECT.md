@@ -54,7 +54,7 @@ interface DataStore {
   parsedData: ParsedData | null;
   columnMapping: ColumnMapping;
   validationResults: ValidationResult[];
-  
+
   setCsvData: (data: string) => void;
   setParsedData: (data: ParsedData | null) => void;
   setColumnMapping: (mapping: ColumnMapping) => void;
