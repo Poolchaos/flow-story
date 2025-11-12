@@ -235,4 +235,3 @@ Built with ❤️ using React, TypeScript, Three.js, and Tailwind CSS
     },
   },
 ])
-```
