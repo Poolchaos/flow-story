@@ -3,6 +3,7 @@ import { OrbitControls, Grid, PerspectiveCamera } from '@react-three/drei';
 import { useDataStore } from '../store/dataStore';
 import BarChart3D from './BarChart3D';
 import ParticleCloud3D from './ParticleCloud3D';
+import BubbleChart3D from './BubbleChart3D';
 
 interface Scene3DProps {
   template?: 'bars' | 'particles' | 'spheres';
@@ -56,7 +57,7 @@ export default function Scene3D({ template = 'bars' }: Scene3DProps) {
         {/* Data visualization */}
         {template === 'bars' && <BarChart3D />}
         {template === 'particles' && <ParticleCloud3D />}
-        {/* Future templates: spheres */}
+        {template === 'spheres' && <BubbleChart3D />}
       </Canvas>
     </div>
   );

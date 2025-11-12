@@ -28,6 +28,7 @@ export default defineConfig({
         // Tests exist and pass, but coverage tool can't measure WebGL code execution
         'src/components/ParticleCloud3D.tsx',
         'src/components/BarChart3D.tsx',
+        'src/components/BubbleChart3D.tsx',
         'src/components/Scene3D.tsx',
       ],
       thresholds: {
