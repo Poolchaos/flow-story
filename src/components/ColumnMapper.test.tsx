@@ -1,3 +1,12 @@
+/*
+ * Copyright (c) 2025 Artemis. All Rights Reserved.
+ *
+ * This source code is licensed under the PolyForm Noncommercial License 1.0.0
+ * found in the LICENSE file in the root directory of this source tree.
+ *
+ * For commercial licensing, contact: artemis@example.com
+ */
+
 import { describe, it, expect, beforeEach } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import ColumnMapper from './ColumnMapper';
@@ -127,7 +136,7 @@ describe('ColumnMapper', () => {
       useDataStore.getState().setColumnMapping({ x: 'age', y: 'salary', z: 'age' });
       render(<ColumnMapper />);
 
-      expect(screen.getByText(/Ready to proceed/i)).toBeInTheDocument();
+      expect(screen.getByText(/Ready to validate/i)).toBeInTheDocument();
     });
   });
 

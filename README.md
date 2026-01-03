@@ -1,8 +1,37 @@
 # FlowStory - 3D Data Storytelling Platform
 
-Transform your CSV data into interactive 3D visualizations with animated camera paths and cinematic storytelling. Built with React 18, TypeScript, and Three.js.
+![License: PolyForm Noncommercial](https://img.shields.io/badge/License-PolyForm%20Noncommercial-red.svg)
+![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
+![Coverage](https://img.shields.io/badge/coverage-97.8%25-brightgreen)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.9-blue)
+![React](https://img.shields.io/badge/React-19-61dafb)
 
-## ✨ Features
+> Transform CSV data into interactive 3D visualizations with animated camera paths and cinematic storytelling.
+
+---
+
+## NOT OPEN SOURCE FOR COMMERCIAL USE
+
+**This software is source-available but NOT licensed for commercial use.**
+
+| Use Case | Permitted? |
+|----------|------------|
+| Personal projects | Yes |
+| Educational use | Yes |
+| Research | Yes |
+| Non-profit organizations | Yes |
+| **Commercial SaaS** | **NO - License Required** |
+| **Internal business tools** | **NO - License Required** |
+| **Client projects** | **NO - License Required** |
+| **Enterprise deployment** | **NO - License Required** |
+
+**For commercial licensing inquiries, contact: artemis@example.com**
+
+See [LICENSE](LICENSE) for full terms (PolyForm Noncommercial License 1.0.0).
+
+---
+
+## Features
 
 ### 📊 Data Management
 - **CSV Upload**: Drag-and-drop or browse to upload CSV files
@@ -211,27 +240,25 @@ Professional cyan/teal palette:
 - Accent: `#22d3ee` (cyan-400)
 - Gradient: Cyan → Purple for data visualization
 
-## 📄 License
+## License
 
-MIT
+**PolyForm Noncommercial License 1.0.0**
 
-## 🤝 Contributing
+This software is provided for non-commercial use only. Commercial use requires a paid license.
 
-Contributions welcome! Please ensure:
+See [LICENSE](LICENSE) for complete terms.
+
+**Commercial licensing:** artemis@example.com
+
+## Contributing
+
+Contributions welcome under the same non-commercial terms. Please ensure:
 - All tests pass (`npm run test:coverage`)
 - TypeScript compiles without errors (`npm run build`)
 - Linting passes (`npm run lint`)
-- Coverage remains ≥85% for all metrics
+- Coverage remains above 85% for all metrics
+- You agree to license your contributions under PolyForm Noncommercial 1.0.0
 
 ---
 
-Built with ❤️ using React, TypeScript, Three.js, and Tailwind CSS
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Copyright (c) 2025 Artemis. All Rights Reserved.

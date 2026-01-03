@@ -1,3 +1,12 @@
+/*
+ * Copyright (c) 2025 Artemis. All Rights Reserved.
+ *
+ * This source code is licensed under the PolyForm Noncommercial License 1.0.0
+ * found in the LICENSE file in the root directory of this source tree.
+ *
+ * For commercial licensing, contact: artemis@example.com
+ */
+
 import { describe, it, expect, beforeEach } from 'vitest';
 import { useDataStore } from './dataStore';
 import type { ParsedData, ColumnMapping, ValidationResult, Waypoint } from '../types';
