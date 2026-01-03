@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2025 Artemis. All Rights Reserved.
+ * Copyright (c) 2025 Phillip-Juan van der Berg. All Rights Reserved.
  *
  * This source code is licensed under the PolyForm Noncommercial License 1.0.0
  * found in the LICENSE file in the root directory of this source tree.
  *
- * For commercial licensing, contact: artemis@example.com
+ * For commercial licensing, contact: phillipjuanvanderberg@gmail.com
  */
 
 import { useDataStore } from '../store/dataStore';

@@ -25,7 +25,7 @@
 | **Client projects** | **NO - License Required** |
 | **Enterprise deployment** | **NO - License Required** |
 
-**For commercial licensing inquiries, contact: artemis@example.com**
+**For commercial licensing inquiries, contact: phillipjuanvanderberg@gmail.com**
 
 See [LICENSE](LICENSE) for full terms (PolyForm Noncommercial License 1.0.0).
 
@@ -248,7 +248,7 @@ This software is provided for non-commercial use only. Commercial use requires a
 
 See [LICENSE](LICENSE) for complete terms.
 
-**Commercial licensing:** artemis@example.com
+**Commercial licensing:** phillipjuanvanderberg@gmail.com
 
 ## Contributing
 
@@ -261,4 +261,4 @@ Contributions welcome under the same non-commercial terms. Please ensure:
 
 ---
 
-Copyright (c) 2025 Artemis. All Rights Reserved.
+Copyright (c) 2025 Phillip-Juan van der Berg. All Rights Reserved.
